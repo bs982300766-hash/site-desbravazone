@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desbravazone - Conectando Desbravadores</title>
+    
+    <!-- Carrega o Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Carrega a fonte Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Ícones (usaremos Heroicons via SVG) -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <style>
+        /* Define a fonte Inter como padrão */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Estilo para o link ativo na navegação */
+        .nav-link-active {
+            color: #2563eb; /* Azul do Tailwind */
+            font-weight: 600;
+        }
+
+        /* Animação suave para o carrossel */
+        .carousel-track {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* Adicionando classes para a barra de scroll customizada (opcional, mas melhora a estética) */
+        .scrolling-container::-webkit-scrollbar {
+            height: 8px; /* Altura da barra de scroll */
+        }
+        .scrolling-container::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1; /* Cor do "polegar" (gray-400) */
+            border-radius: 10px;
+        }
+        .scrolling-container::-webkit-scrollbar-track {
+            background-color: #f1f5f9; /* Cor da trilha (gray-100) */
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+
+    <!-- 
+      HEADER / NAVEGAÇÃO 
+      - 'sticky': Mantém o header fixo no topo.
+      - 'z-50': Garante que o header fique acima de outros elementos.
+      - 'md:flex': Em telas médias (md) ou maiores, os links aparecem.
+      - 'hidden': Em telas pequenas, os links ficam escondidos (aparecem no menu mobile).
+    -->
+    <header class="sticky top-0 bg-white/95 backdrop-blur-sm shadow-md z-50">
+        <nav class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
+            <!-- Logo -->
+            <a href="#welcome" class="text-3xl font-extrabold text-blue-600">
+                Desbravazone
+            </a>
+
+            <!-- Links de Navegação (Desktop) -->
+            <div class="hidden md:flex space-x-6 lg:space-x-8 items-center">
+                <a href="#welcome" class="nav-link text-gray-600 hover:text-blue-600 font-medium transition-colors duration-300" data-nav-id="welcome">Boas-Vindas</a>
+                <a href="#about" class="nav-link text-gray-600 hover:text-blue-600 font-medium transition-colors duration-300" data-nav-id="about">Quem Somos</a>
+                <a href="#services" class="nav-link text-gray-600 hover:text-blue-600 font-medium transition-colors duration-300" data-nav-id="services">O que fazemos</a>
+                <a href="#portfolio" class="nav-link text-gray-600 hover:text-blue-600 font-medium transition-colors duration-300" data-nav-id="portfolio">Portifólio</a>
+                <a href="#contact" class="nav-link text-gray-600 hover:text-blue-600 font-medium transition-colors duration-300" data-nav-id="contact">Contato</a>
+            </div>
+
+            <!-- Botão de Menu (Mobile) -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Menu Mobile (Escondido por padrão) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg border-t border-gray-100">
+            <a href="#welcome" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-blue-50" data-nav-id="welcome">Boas-Vindas</a>
+            <a href="#about" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-blue-50" data-nav-id="about">Quem Somos</a>
+            <a href="#services" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-blue-50" data-nav-id="services">O que fazemos</a>
+            <a href="#portfolio" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-blue-50" data-nav-id="portfolio">Portifólio</a>
+            <a href="#contact" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-blue-50" data-nav-id="contact">Contato</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 
+          SEÇÃO: BOAS-VINDAS (WELCOME)
+          - 'min-h-screen': Faz a seção ocupar a tela inteira.
+          - 'bg-cover': Faz a imagem de fundo cobrir toda a área.
+          - 'bg-black/50': Adiciona uma camada preta com 50% de opacidade para legibilidade.
+          - IMPORTANTE: Altere a URL da imagem em 'background-image'.
+        -->
+        <section id="welcome" class="relative min-h-[calc(100vh-80px)] flex items-center justify-center bg-cover bg-center" style="background-image: url('https://placehold.co/1920x1080/34495e/ecf0f1?text=[Imagem+Incrível+de+Desbravadores]');">
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="relative z-10 text-center text-white p-6">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
+                    Bem-vindo ao Desbravazone
+                </h1>
+                <p class="text-xl md:text-2xl font-light text-gray-200 max-w-3xl mx-auto">
+                    Conectando e capacitando a nação do lenço amarelo através de mídia e comunicação.
+                </p>
+                <a href="#about" class="mt-10 inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-blue-700 transition-all duration-300 shadow-lg">
+                    Descubra Mais
+                </a>
+            </div>
+        </section>
+
+        <!-- 
+          SEÇÃO: QUEM SOMOS (ABOUT)
+          - 'py-16 md:py-24': Espaçamento vertical (padding).
+          - 'max-w-4xl': Limita a largura do texto para melhor legibilidade.
+          - IMPORTANTE: Altere o texto dentro das tags <p> e <h2>.
+        -->
+        <section id="about" class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+                        Quem Somos
+                    </h2>
+                    <p class="text-lg text-blue-600 font-semibold mb-8">
+                        Mais que um projeto, uma missão.
+                    </p>
+                    <div class="text-left text-lg text-gray-700 space-y-5 leading-relaxed">
+                        <p>
+                            O <strong>Projeto DesbravaZone</strong> nasceu da ideia de expandir o verso dos Clubes de Desbravadores nas redes sociais e no mundo digital. A proposta é construirmos o nosso próprio ministério, que inicialmente abrangerá as regiões da Associação Bahia Sul que desejarem fazer parte.
+                        </p>
+                        <p>
+                            Seremos uma mistura de DBVMANIA + Camelo na Agulha + Selfie Desbravador + Desbrava+, sendo a ponte para a expansão e propagação do evangelho através das redes sociais, alcançando toda a comunidade da Bahia Sul.
+                        </p>
+                        <p>
+                            Para que esse cenário se torne realidade, será realizado um trabalho conjunto com as equipes de mídia de todas as Regiões de Desbravadores da Associação Bahia Sul, com a colaboração dos Distritais e Regionais. As regiões que ainda não tiverem uma equipe dedicada deverão criar a sua, para estar em paridade com as demais.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          SEÇÃO: O QUE FAZEMOS (SERVICES) - REINSERIDA
+          - Recriada com os 3 pilares do projeto.
+        -->
+        <section id="services" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+                        O que fazemos
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Trabalhamos em três vertentes principais para expandir o ministério digital na Associação Bahia Sul.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <!-- Card 1: Capacitação -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-blue-100 transition-shadow">
+                        <div class="flex justify-center items-center mb-5">
+                            <ion-icon name="easel-outline" class="text-5xl text-blue-600"></ion-icon>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Capacitação Técnica</h3>
+                        <p class="text-gray-600">
+                            Expansão dos conhecimentos técnicos e práticos em audiovisual para os membros que desejam fazer parte do ministério.
+                        </p>
+                    </div>
+
+                    <!-- Card 2: Produção de Conteúdo -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-blue-100 transition-shadow">
+                        <div class="flex justify-center items-center mb-5">
+                            <ion-icon name="camera-outline" class="text-5xl text-blue-600"></ion-icon>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Criação de Conteúdo</h3>
+                        <p class="text-gray-600">
+                            Ser um porta-voz e referência na criação de conteúdo de qualidade, alinhado às nossas crenças e ao padrão do Clube.
+                        </p>
+                    </div>
+
+                    <!-- Card 3: Expansão e Parceria -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-blue-100 transition-shadow">
+                        <div class="flex justify-center items-center mb-5">
+                            <ion-icon name="people-outline" class="text-5xl text-blue-600"></ion-icon>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Expansão e Parceria</h3>
+                        <p class="text-gray-600">
+                            Expansão do projeto para toda a ABS, em colaboração com o @JOVENSABS, fortalecendo os Clubes na área midiática.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          SEÇÃO: PORTIFÓLIO (PORTFOLIO) - CORRIGIDA
+          - ID alterado de 'services' para 'portfolio'.
+          - Títulos e textos atualizados.
+          - Fundo alterado para 'bg-gray-50' para criar contraste.
+        -->
+        <section id="portfolio" class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+                        Nosso Portifólio
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Veja alguns dos nossos trabalhos e coberturas de eventos. Arraste para o lado para ver mais.
+                    </p>
+                </div>
+
+                <!-- Container do Carrossel (Agora com Scroll Horizontal) -->
+                <div class="max-w-7xl mx-auto">
+                    <!-- 
+                      Viewport (agora é o container de scroll)
+                      - 'overflow-x-auto': Permite o scroll horizontal
+                      - 'snap-x snap-mandatory': Faz o scroll "travar" em cada cartão
+                      - 'pb-4': Espaço para a barra de scroll
+                      - '-mx-4 px-4': Truque para fazer o scroll ir de ponta a ponta no mobile
+                    -->
+                    <div class="scrolling-container overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 sm:px-6 lg:px-8">
+                        <!-- Track (o que se move) -->
+                        <div class="flex space-x-6">
+                            
+                            <!-- Card 1 -->
+                            <!-- 
+                              - 'w-80 md:w-96': Define a largura do cartão
+                              - 'flex-shrink-0': Impede que o cartão seja "esmagado"
+                              - 'snap-center': Centraliza o cartão no scroll
+                            -->
+                            <div class="w-80 md:w-96 flex-shrink-0 snap-center">
+                                <a href="https://link-publicacao-1.com" target="_blank" class="block bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                                    <img src="https://placehold.co/600x400/007aff/ffffff?text=Projeto+Campori+Alpha" alt="Projeto 1" class="w-full h-56 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg">Projeto Campori Alpha</h3>
+                                        <p class="text-sm text-gray-600">Clique para ver mais</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div class="w-80 md:w-96 flex-shrink-0 snap-center">
+                                <a href="https://link-publicacao-2.com" target="_blank" class="block bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                                    <img src="https://placehold.co/600x400/34c759/ffffff?text=Cobertura+Investidura" alt="Projeto 2" class="w-full h-56 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg">Cobertura Investidura</h3>
+                                        <p class="text-sm text-gray-600">Clique para ver mais</p>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <!-- Card 3 -->
+                            <div class="w-80 md:w-96 flex-shrink-0 snap-center">
+                                <a href="https://link-publicacao-3.com" target="_blank" class="block bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                                    <img src="https://placehold.co/600x400/ff9500/ffffff?text=Treinamento+de+Mídia" alt="Projeto 3" class="w-full h-56 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg">Treinamento de Mídia</h3>
+                                        <p class="text-sm text-gray-600">Clique para ver mais</p>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <!-- Card 4 -->
+                            <div class="w-80 md:w-96 flex-shrink-0 snap-center">
+                                <a href="https://link-publicacao-4.com" target="_blank" class="block bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                                    <img src="https://placehold.co/600x400/5856d6/ffffff?text=Ação+Social" alt="Projeto 4" class="w-full h-56 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg">Ação Social</h3>
+                                        <p class="text-sm text-gray-600">Clique para ver mais</p>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <!-- Card 5 -->
+                            <div class="w-80 md:w-96 flex-shrink-0 snap-center">
+                                <a href="https://link-publicacao-5.com" target="_blank" class="block bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                                    <img src="https://placehold.co/600x400/ff2d55/ffffff?text=Dia+Mundial+DBV" alt="Projeto 5" class="w-full h-56 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg">Dia Mundial DBV</h3>
+                                        <p class="text-sm text-gray-600">Clique para ver mais</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Card 6 -->
+                            <div class="w-80 md:w-96 flex-shrink-0 snap-center">
+                                <a href="https://link-publicacao-6.com" target="_blank" class="block bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                                    <img src="https://placehold.co/600x400/af52de/ffffff?text=Batismo+da+Primavera" alt="Projeto 6" class="w-full h-56 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg">Batismo da Primavera</h3>
+                                        <p class="text-sm text-gray-600">Clique para ver mais</p>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <!-- Card 7 -->
+                            <div class="w-80 md:w-96 flex-shrink-0 snap-center">
+                                <a href="https://link-publicacao-7.com" target="_blank" class="block bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                                    <img src="https://placehold.co/600x400/00b8e6/ffffff?text=Desfile+Cívico" alt="Projeto 7" class="w-full h-56 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg">Desfile Cívico</h3>
+                                        <p class="text-sm text-gray-600">Clique para ver mais</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Card 8 -->
+                            <div class="w-80 md:w-96 flex-shrink-0 snap-center">
+                                <a href="https://link-publicacao-8.com" target="_blank" class="block bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                                    <img src="https://placehold.co/600x400/6a6e71/ffffff?text=Acampamento+Clube" alt="Projeto 8" class="w-full h-56 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg">Acampamento Clube</h3>
+                                        <p class="text-sm text-gray-600">Clique para ver mais</p>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <!-- Card 9 -->
+                            <div class="w-80 md:w-96 flex-shrink-0 snap-center">
+                                <a href="https://link-publicacao-9.com" target="_blank" class="block bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                                    <img src="https://placehold.co/600x400/ff6b22/ffffff?text=Visita+ao+Asilo" alt="Projeto 9" class="w-full h-56 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg">Visita ao Asilo</h3>
+                                        <p class="text-sm text-gray-600">Clique para ver mais</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Card 10 -->
+                            <div class="w-80 md:w-96 flex-shrink-0 snap-center">
+                                <a href="https://link-publicacao-10.com" target="_blank" class="block bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                                    <img src="https://placehold.co/600x400/32d796/ffffff?text=Clube+de+Líderes" alt="Projeto 10" class="w-full h-56 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg">Clube de Líderes</h3>
+                                        <p class="text-sm text-gray-600">Clique para ver mais</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Botões de Navegação do Carrossel REMOVIDOS -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 
+          SEÇÃO: CTA (Call to Action) - NOVA
+          - Seção de convite para ser correspondente.
+        -->
+        <section id="cta-correspondente" class="py-16 md:py-20 bg-blue-600 text-white">
+            <div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
+                    Quer ser nosso correspondente?
+                </h2>
+                <p class="text-lg text-blue-100 max-w-2xl mx-auto mb-8">
+                    Estamos sempre buscando novos talentos para se juntarem à nossa equipe de mídia e cobrir eventos em todas as regiões.
+                </p>
+                <a href="#contact" class="inline-block bg-white text-blue-600 font-bold py-3 px-8 rounded-lg text-lg hover:bg-gray-100 transition-all duration-300 shadow-lg transition-transform hover:scale-105">
+                    Entre em contato e se inscreva!
+                </a>
+            </div>
+        </section>
+
+
+        <!-- 
+          SEÇÃO: CONTATO (CONTACT)
+          - 'grid md:grid-cols-2': Divide a seção em duas colunas.
+          - IMPORTANTE: Altere os dados de contato (email, telefone, redes).
+          - O formulário atualmente não envia dados, é apenas visual.
+        -->
+        <section id="contact" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+                        Entre em Contato
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Tem uma ideia, um projeto ou precisa de ajuda? Vamos conversar.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                    <!-- Coluna do Formulário -->
+                    <form action="#" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Seu Nome</label>
+                            <input type="text" id="name" name="name" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Seu Email</label>
+                            <input type="email" id="email" name="email" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700">Mensagem</label>
+                            <textarea id="message" name="message" rows="5" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full py-3 px-6 bg-blue-600 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300">
+                                Enviar Mensagem
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Coluna de Informações de Contato -->
+                    <div class="space-y-6 bg-gray-50 p-8 rounded-lg">
+                        <h3 class="text-2xl font-bold text-gray-800">Nossos Canais</h3>
+                        
+                        <div class="flex items-center space-x-4">
+                            <ion-icon name="mail-outline" class="text-3xl text-blue-600"></ion-icon>
+                            <div>
+                                <h4 class="font-semibold">Email</h4>
+                                <a href="mailto:contato@desbravazone.com" class="text-gray-600 hover:text-blue-600">contato@desbravazone.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <ion-icon name="logo-whatsapp" class="text-3xl text-blue-600"></ion-icon>
+                            <div>
+                                <h4 class="font-semibold">WhatsApp</h4>
+                                <a href="https://wa.me/55739XXXXXXXX" target="_blank" class="text-gray-600 hover:text-blue-600">(73) 9XXXX-XXXX</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <ion-icon name="logo-instagram" class="text-3xl text-blue-600"></ion-icon>
+                            <div>
+                                <h4 class="font-semibold">Instagram</h4>
+                                <a href="https://instagram.com/desbravazone" target="_blank" class="text-gray-600 hover:text-blue-600">@desbravazone</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 
+      FOOTER (RODAPÉ)
+    -->
+    <footer class="bg-gray-800 text-gray-300 py-8">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; <span id="current-year"></span> Desbravazone. Todos os direitos reservados.</p>
+            <p class="text-sm mt-2">Desenvolvido com paixão pelo Ministério dos Desbravadores.</p>
+        </div>
+    </footer>
+
+
+    <!-- 
+      SCRIPT JAVASCRIPT
+      - Controla o menu mobile, o carrossel e o scroll suave.
+    -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- ATUALIZAR ANO NO RODAPÉ ---
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // --- LÓGICA DO MENU MOBILE ---
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.nav-link-mobile');
+
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Fecha o menu mobile ao clicar em um link
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // --- LÓGICA DO CARROSSEL ---
+            // (Esta seção foi removida pois o carrossel agora usa scroll nativo do CSS)
+            /*
+            const track = document.getElementById('carousel-track');
+            // 'track.children' são os 'slides'
+            const slides = Array.from(track.children);
+            const nextButton = document.getElementById('carousel-next');
+            const prevButton = document.getElementById('carousel-prev');
+            
+            // Verifica se os elementos do carrossel existem antes de adicionar eventos
+            if (track && slides.length > 0 && nextButton && prevButton) {
+                let currentIndex = 0;
+                const slideCount = slides.length;
+
+                const updateCarousel = () => {
+                    // Move o 'track' para a esquerda baseado no índice atual
+                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                };
+
+                nextButton.addEventListener('click', () => {
+                    // Avança para o próximo slide, voltando ao início se chegar ao fim
+                    currentIndex = (currentIndex + 1) % slideCount;
+                    updateCarousel();
+                });
+
+                prevButton.addEventListener('click', () => {
+                    // Volta para o slide anterior, indo para o fim se estiver no início
+                    currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+                    updateCarousel();
+                });
+
+                // Inicia o carrossel na posição correta
+                updateCarousel();
+            }
+            */
+
+            // --- LÓGICA DE SCROLL SUAVE (para links <a> com #) ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if(targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // --- LÓGICA DE LINK ATIVO NA NAVEGAÇÃO (Intersection Observer) ---
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link'); // Apenas links do desktop
+            
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.6 // 60% da seção deve estar visível
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Remove a classe ativa de todos
+                        navLinks.forEach(link => {
+                            link.classList.remove('nav-link-active');
+                        });
+                        
+                        // Adiciona a classe ativa ao link correspondente
+                        const targetId = entry.target.id;
+                        // Adiciona classe ao link do desktop
+                        const activeLink = document.querySelector(`.nav-link[data-nav-id="${targetId}"]`);
+                        if(activeLink) {
+                            activeLink.classList.add('nav-link-active');
+                        }
+                        
+                        // Adiciona classe ao link do mobile (opcional, mas bom para consistência)
+                        const activeMobileLink = document.querySelector(`.nav-link-mobile[data-nav-id="${targetId}"]`);
+                        if(activeMobileLink) {
+                            activeMobileLink.classList.add('bg-blue-100', 'font-semibold');
+                        }
+                    } else {
+                        // Remove classes de links mobile quando não estão ativos
+                        const targetId = entry.target.id;
+                        const activeMobileLink = document.querySelector(`.nav-link-mobile[data-nav-id="${targetId}"]`);
+                        if(activeMobileLink) {
+                            activeMobileLink.classList.remove('bg-blue-100', 'font-semibold');
+                        }
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            sections.forEach(section => observer.observe(section));
+
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
